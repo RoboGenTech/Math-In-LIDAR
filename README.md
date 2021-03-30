@@ -1,7 +1,6 @@
 # Overview: 
 <img width="400" heigh="350" align="left" src="images/Lidar0.jpg">
 The project is using RPLidar, a product by SLAMtech as a Lidar sensor. The RPLidar device is capable of doing a full 360 degree sweep of  the environment.  This device is a full 360 degree rotating Lidar similar to the type of Lidar sensor that we see on top of the self-driving vehicles also called Autonomous Vehicles or AV. In early uses of Lidar technology, a famous Lidar use was for the Apollo 15 moon mission, where they used Lidar to do the topographical map of the section of the moon.  
-
 In this project, I learned what data gets collected using Lidar sensors and what computational algorithms are used to convert that data into actionable perception for navigating a self driving car.   I used Python, and C libraries to map the data collected by my RPLidar device into matrix form. This enabled the Linear Algebra calculations used by the optimization algorithm that I decided to study. The calculations used in the algorithm also teach basics in data science.
 
 # Part1- Measurement:
