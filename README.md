@@ -6,9 +6,11 @@ The project is using RPLidar, a product by SLAMtech as a Lidar sensor. The RPLid
 In this project, I learned what data gets collected using Lidar sensors and what computational algorithms are used to convert that data into actionable perception for navigating a self driving car.   I used Python, and C libraries to map the data collected by my RPLidar device into matrix form. This enabled the Linear Algebra calculations used by the optimization algorithm that I decided to study. The calculations used in the algorithm also teach basics in data science.
 
 # Part1- Measurement:
-SLAMtech is the  vendor of the RPLidar device and they provide applications written in C programming language.  (RPLidar, Standard SDK)  can be downloaded to a Windows or Linux platform.  The lidar data from the device is obtained from the elements in this C structure as output data.
 <img width="450" heigh="350" align="right" src="images/Lidar.jpg">
-The program output is a 360 degree view data  -- each record in the file is formatted as  
+
+SLAMtech is the  vendor of the RPLidar device and they provide applications written in C programming language.  (RPLidar, Standard SDK)  can be downloaded to a Windows or Linux platform. The program outputs 360-degree view data which can also be visualized using Frame Grabber applet available with SDK. 
+
+The lidar data from the device can also be obtained from the elements in this C structure as output data. Each record in the file is formatted as  
 - Flag (whether the point belongs to a new scan)
 - Angle (Angle value in degree)
 - Distance (Distance value in mm unit)
