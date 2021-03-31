@@ -52,7 +52,7 @@ The studied optimization is seemingly a total least-square problem with referenc
 Steps of the Algorithm:
   - i. { Mb } a set of points <code>p<sub>i</sub></code> and {Mt} a set of points <code>q<sub>i</sub></code>  where i = 0 to m, are  mapped to  m×3 data matrices.  
   - ii. Centroids p¯, and  q¯ are calculated for Am  Bm. The derivation for converting the equation to use centroids is explained in paper referenced below (Least-Squares Rigid Motion Using SVD)
-  - iii. A := <code>p<sub>i</sub><code> − p¯,   B := <code>q<sub>i</sub></code> − q¯ 
+  - iii. <code>A := p<sub>i</sub> − p¯,   B := q<sub>i</sub> − q¯ </code>
   - iv. Cross-covariance    C′=<code>A<sup>T</sup>B</code> 
   - v.  Singular Value Decomposition SVD(C′) = UΣV<code><sup>T</sup></code> 
   - vi. R=VU<code><sup>T</sup></code>   where  R is the desired rotation matrix.
