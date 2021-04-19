@@ -47,7 +47,10 @@ We are going to consider a  N X 3 matrix, where N is the number of points data c
 With the help of conversion calculations from polar form to complex form, the experimental data measured by the RPLidar device was registered  as  M [ N X 3], a 3D Point set. As mentioned earlier, the experimental data sets are the PreImage {M<sub>b</sub>}, and  Image {M<sub>t</sub>} obtained by making a  linear transformation of the position of the device. 
 
 <img width="450" heigh="350" align="right" src="images/Lidar02.jpg">
+
 #### Graphing the Cartesian Plane:
+
+
 We are going to graph and label the preimage and the image of each point onto the same set of axes. I am visualizing  the transformation by plot of the two point sets (using matplotlib). This enables us to visualize the transformation as can be seen from the red reference points and blue are the transformed point set.
 
 # Part4- Validation with Computational Algorithm:
