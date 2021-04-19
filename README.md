@@ -1,32 +1,22 @@
 # Project Name: The Math Used In LiDaR
 # Overview: 
+This project can be used as an introductory Data Science project. In this project, I learned what data gets collected using Lidar sensors and what computational algorithms are used to convert that data into actionable perception such as navigating a self driving car. I studied C libraries of (RP Lidar, Standard SSK), and used Jupyter Notebook to map the data collected by a RPLidar device. Jupyter Notebook enabled the Linear Algebra calculations used by the optimization algorithm that I decided to study. 
+
 <img width="350" heigh="250" align="right" src="images/Lidar0.jpg">
-The project is using RPLidar, a product by SLAMtech as a Lidar sensor. The RPLidar device is capable of doing a full 360 degree sweep of  the environment.  This device is a full 360 degree rotating Lidar similar to the type of Lidar sensor that we see on top of the self-driving vehicles also called Autonomous Vehicles or AV. In early uses of Lidar technology, a famous Lidar use was for the Apollo 15 moon mission, where they used Lidar to do the topographical map of the section of the moon.  
+The project is using RPLidar, a product by SLAMtech as a Lidar sensor. The RPLidar device is capable of doing a full 360 degree sweep of  the environment.  This device is a full 360 degree rotating Lidar similar to the type of Lidar sensor that we see on top of the self-driving vehicles also called Autonomous Vehicles or AV. Note that there are many other applications of Lidar. In early uses of Lidar technology, a famous Lidar use was for the Apollo 15 moon mission, where they used Lidar to do the topographical map of the section of the moon.  
 
-This project has the following five components: 
-1)  Measurement 2) Problem Formulation 3) Visualization 4) Validation 5) Computer Programs for Data Science
+This project has the following components: 
+1) Problem Formulation 2)  Measurement 3) Data Transformation and Visualization 
+4) Validation using Computational Algorithms.
 
+# Part1- Problem Formulation:
+<img width="350" heigh="250" align="right" src="images/Lidar01.jpg">
+A navigation problem using a Lidar sensor can be formulated in the form of State-estimation via Point Set Registration. Each point p that is scanned is registered as a discrete vector with the following parameters [r,A],  where r is the distance from the basis, and A is the angle. The problem can then be stated :
 
-In this project, I learned what data gets collected using Lidar sensors and what computational algorithms are used to convert that data into actionable perception for navigating a self driving car.   I used Python, and C libraries to map the data collected by my RPLidar device into matrix form. This enabled the Linear Algebra calculations used by the optimization algorithm that I decided to study. The calculations used in the algorithm also teach basics in data science.
+Let 	M be the Point set  <code>{ p<sub>i</sub> }</code>  and  i ranges from 0 to 360 degree,\
+  and   M<sub>b</sub>, M<sub>t</sub> be two sets of corresponding points in <code>ℝ<sup>d</sup></code>  , where the first point set is M<sub>b</sub> and the second point set is M<sub>t</sub>
 
-# Part1- Measurement:
-<img width="450" heigh="350" align="right" src="images/Lidar.jpg">
-
-SLAMtech is the  vendor of the RPLidar device and they provide applications written in C programming language.  (RPLidar, Standard SDK)  can be downloaded to a Windows or Linux platform. The program outputs 360-degree view data which can also be visualized using Frame Grabber applet available with SDK. 
-
-The lidar data from the device can also be obtained from the elements in this C structure as output data. Each record in the file is formatted as  
-- Flag (whether the point belongs to a new scan)
-- Angle (Angle value in degree)
-- Distance (Distance value in mm unit)
-- Quality (Quality of the LASER intensity)
-
-
-# Part2- Problem Formulation:
-A navigation problem using a Lidar sensor can be formulated in the form of State-estimation via Point Set Registration. Each point p that is scanned is registered as a discrete vector with the following parameters [r,A],  where r is the distance from the basis, and A is the angle.  (Coursera lecture)
-The problem can then be stated :
-Let 	M be the Point set  <code>{ p<sub>i</sub> }</code>  and  i ranges from 0 to 360 degree,
-and   Mb, Mt be two sets of corresponding points in <code>ℝ<sup>d</sup></code>  , where the first point set is Mb and the second point set is Mt
-We wish to find a transformation that optimally aligns the two sets, i.e., we seek a rotation matrix R and a translation vector t that uses the computation algorithm published in IEEE Transactions on Pattern Analysis and Machine Learning” (Least-squares fitting). Here is the basic framework of Least-squares algorithm. The optimal rigid 3D registration problem from vector measurements can be characterized as 
+We wish to find a transformation that optimally aligns the two sets, i.e., we seek a rotation R and a translation vector t. So, our ground truth is the change in position of the device to obtain Mb, and Mt .  Then I validate the transformation of Point sets  by using Mb, and Mt  as input to the computation algorithm called Least-square algorithm,  published in IEEE Transactions on Pattern Analysis and Machine Learning” (Least-squares fitting).  Here is the basic framework of Least-squares algorithm. The optimal rigid 3D registration problem from vector measurements can be characterized as
 
 L(R, t)      = <code>argmin 
     <sub>R∈SO(d), t∈ℝ<sup>d</sup></sub> Σ 1->n 
@@ -39,17 +29,35 @@ where,
 - <code>p<sub>i</sub> = (b<sub>x,i</sub>, b<sub>y,i</sub> , b<sub>z,i</sub> ) p ∈ {Mb}      and q<sub>i</sub> = (t<sub>x,i</sub>, t<sub>y,i</sub> , t<sub>z,i</sub> ) q ∈ {Mt}   represent the i-th pair of point correspondences in first point set {Mb}  and second point set {Mt}, respectively. </code>
 - L is called the metric error function that owns independent variables of R and t to be estimated
 
-#### Data Collection and Conversion:
+# Part2- Measurement:
+<img width="450" heigh="350" align="right" src="images/Lidar.jpg">
+
+The two point sets for the preimage, and the image are obtained using SLAMtech application frame grabber. SLAMtech is the  vendor of the RPLidar device and they provide applications written in C programming language. Output data is also written out to a csv file ( See the excerpts to C program that captures rplidar_response_measurement_node_hq_t). RPLidar, Standard SDK that is making this application possible can be downloaded to a Windows or Linux platform.
+
+We can visualize the 360-degree view in the frame grabber applet as the device sweeps the plane by rotating the sensor. Each point in the csv file is formatted as  
+- Flag (whether the point belongs to a new scan)
+- Angle (Angle value in degree)
+- Distance (Distance value in mm unit)
+- Quality (Quality of the LASER intensity)
+
+
 The experimental data measured by the RPLidar device was registered  as  M, a 3D Point set. Our ground truth is the change in position of the device.  With the help of conversion calculations Point set data was converted from polar form to complex form; the experimental data  PreImage {Mb}, and transformed data {Mt} was obtained by making a  linear transformation of the position of the device.   So,  by taking Point sets  Mb, Mt as input to an algorithm used for finding rotation and translation.
 
-# Part3- Visualization:
-I am visualizing  the transformation by plot of the two point sets (using matplotlib). This enabled us to visualize the transformation as can be seen from the red reference points and blue are the transformed point set.
+# Part3- Data Transformation and Visualization:
+#### Mapping the Plane with Matrices:
+We are going to consider a  N X 3 matrix, where N is the number of points data collected in a 360 degree sweep, and 3 coordinates determine a point in the 3D space. 
+With the help of conversion calculations from polar form to complex form, the experimental data measured by the RPLidar device was registered  as  M [ N X 3], a 3D Point set. As mentioned earlier, the experimental data sets are the PreImage {M<sub>b</sub>}, and  Image {M<sub>t</sub>} obtained by making a  linear transformation of the position of the device. 
 
-# Part4- Validation:
+#### Graphing the Cartesian Plane:
+We are going to graph and label the preimage and the image of each point onto the same set of axes. 
+
+<img width="450" heigh="350" align="right" src="images/Lidar02.jpg">
+I am visualizing  the transformation by plot of the two point sets (using matplotlib). This enables us to visualize the transformation as can be seen from the red reference points and blue are the transformed point set.
+
+# Part4- Validation with Computational Algorithm:
 The studied optimization is seemingly a total least-square problem with reference and transformed observations. Many solutions have been developed to solve this optimization problem. The equivalent algorithm is explained in detail in Olga and Michaels paper ( Least-Squares Rigid Motion Using SVD). The algorithm seeks the optimal direction cosine matrix for rotation, and translation vector to minimize the metric error from the 3D rigid transform. Algorithm computes the rotation R, and translation matrix t from matrices of point set using Linear algebra concepts namely Linear Transformation, Orthogonal Matrix, and Singular Value Decomposition SVD.
 
-# Part5- Computer Program for Data Science:
-Steps of the Algorithm:
+#### Steps of the algorithm:
   - i. { Mb } a set of points <code>p<sub>i</sub></code> and {Mt} a set of points <code>q<sub>i</sub></code>  where i = 0 to m, are  mapped to  m×3 data matrices.  
   - ii. Centroids p¯, and  q¯ are calculated for Am  Bm. The derivation for converting the equation to use centroids is explained in paper referenced below (Least-Squares Rigid Motion Using SVD)
   - iii. <code>A := p<sub>i</sub> − p¯,   B := q<sub>i</sub> − q¯ </code>
