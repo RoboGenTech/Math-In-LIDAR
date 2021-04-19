@@ -4,7 +4,8 @@ This project can be used as an introductory Data Science project. In this projec
 
 <img width="350" heigh="250" align="right" src="images/Lidar0.jpg">
 The project is using RPLidar, a product by SLAMtech as a Lidar sensor. The RPLidar device is capable of doing a full 360 degree sweep of  the environment.  This device is a full 360 degree rotating Lidar similar to the type of Lidar sensor that we see on top of the self-driving vehicles also called Autonomous Vehicles or AV. Note that there are many other applications of Lidar. In early uses of Lidar technology, a famous Lidar use was for the Apollo 15 moon mission, where they used Lidar to do the topographical map of the section of the moon. 
-</BR>
+
+</BR><</BR>
 This project has the following components:
   1) Problem Formulation 2)  Measurement 3) Data Transformation and Visualization 
 4) Validation using Computational Algorithms.
