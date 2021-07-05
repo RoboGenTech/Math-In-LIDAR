@@ -1,9 +1,9 @@
 # Project Name: The Math Used In LiDaR
 # Overview: 
-This project can be used as an introductory Data Science project. In this project, I learned what data gets collected using Lidar sensors and what computational algorithms are used to convert that data into actionable perception such as navigating a self driving car. I studied C libraries of (RP Lidar, Standard SDK), and used Jupyter Notebook to map the data collected by a RPLidar device. Jupyter Notebook enabled the Linear Algebra calculations used by the optimization algorithm that I decided to study. 
+In this project, I learned what data gets collected using Lidar sensors and what computational algorithms are used to convert that data into actionable perception such as navigating a self driving car. I studied C libraries of (RP Lidar, Standard SDK), and used Jupyter Notebook to map the data collected by a RPLidar device. Jupyter Notebook enabled the Linear Algebra calculations used by the optimization algorithm that I decided to study. 
 
 <img width="350" heigh="250" align="right" src="images/Lidar0.jpg">
-The project is using RPLidar, a product by SLAMtech as a Lidar sensor. The RPLidar device is capable of doing a full 360 degree sweep of  the environment.  This device is a full 360 degree rotating Lidar similar to the type of Lidar sensor that we see on top of the self-driving vehicles also called Autonomous Vehicles or AV. Note that there are many other applications of Lidar. In early uses of Lidar technology, a famous Lidar use was for the Apollo 15 moon mission, where they used Lidar to do the topographical map of the section of the moon. 
+The project is using RPLidar, a product by SLAMtech as a Lidar sensor. The RPLidar device is capable of doing a full 360 degree sweep of  the environment.  This device is a full 360 degree rotating Lidar similar to the type of Lidar sensor that we see on top of the self-driving vehicles also called Autonomous Vehicles or AV. Note that there are many other applications of Lidar. 
 
 </BR><</BR>
 This project has the following components:
